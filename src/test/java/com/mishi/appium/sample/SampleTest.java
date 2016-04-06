@@ -16,13 +16,13 @@ public class SampleTest {
 
 	@BeforeTest
 	public void setUp() throws Exception {
-		driver = BaseDriverConfig.getInstance().getDriver();
+		this.driver = BaseDriverConfig.getInstance().getDriver();
 	}
 
 	@Test
 	public void login() throws InterruptedException {
-		//等待20秒，等待模拟器启动app程序进入首页
-		Thread.sleep(200000);
+		//等待10秒,等待模拟器启动app程序进入首页,保证test project的健壮性
+		Thread.sleep(10000);
 		
 		//点击启动页的登录按钮
 		StartPageObject pageObject = new StartPageObject(this.driver);

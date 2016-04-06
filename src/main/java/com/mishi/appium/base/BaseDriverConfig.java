@@ -22,14 +22,14 @@ public final class BaseDriverConfig {
 	private AndroidDriver<WebElement> driver;
 
 	public AndroidDriver<WebElement> getDriver() {
-		if (driver == null) {
+		if (this.driver == null) {
 			try {
 				this.initDriver();
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 		}
-		return driver;
+		return this.driver;
 	}
 
 	public void initDriver() throws MalformedURLException {
@@ -62,6 +62,6 @@ public final class BaseDriverConfig {
 		capabilities.setCapability("appActivity", "com.mishi.ui.SplashActivity");
 
 		// 初始化
-		driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		this.driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 	}
 }
