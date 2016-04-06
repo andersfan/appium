@@ -21,9 +21,6 @@ public class SampleTest {
 
 	@Test
 	public void login() throws InterruptedException {
-		//等待10秒,等待模拟器启动app程序进入首页,保证test project的健壮性
-		Thread.sleep(10000);
-		
 		//点击启动页的登录按钮
 		StartPageObject pageObject = new StartPageObject(this.driver);
 		pageObject.clickToLogin();

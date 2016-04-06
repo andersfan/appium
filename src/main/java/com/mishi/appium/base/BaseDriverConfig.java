@@ -21,7 +21,7 @@ public final class BaseDriverConfig {
 	
 	private AndroidDriver<WebElement> driver;
 
-	public AndroidDriver<WebElement> getDriver() {
+	public AndroidDriver<WebElement> getDriver() throws InterruptedException {
 		if (this.driver == null) {
 			try {
 				this.initDriver();
@@ -32,7 +32,7 @@ public final class BaseDriverConfig {
 		return this.driver;
 	}
 
-	public void initDriver() throws MalformedURLException {
+	public void initDriver() throws MalformedURLException, InterruptedException {
 		// 设置apk的路径
 		File classpathRoot = new File(System.getProperty("user.dir"));
 		File appDir = new File(classpathRoot, "app");
@@ -63,5 +63,8 @@ public final class BaseDriverConfig {
 
 		// 初始化
 		this.driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		
+		//等待10秒,等待模拟器启动app程序进入首页,保证test project的健壮性
+		Thread.sleep(10000);
 	}
 }
