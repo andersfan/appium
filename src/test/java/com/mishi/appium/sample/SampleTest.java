@@ -16,9 +16,9 @@ import io.appium.java_client.android.AndroidDriver;
 
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 public class SampleTest extends AbstractTestNGSpringContextTests {
-	
+
 	private AndroidDriver<WebElement> driver = null;
-	
+
 	@Autowired
 	private StartPageObject pageObject;
 	@Autowired
