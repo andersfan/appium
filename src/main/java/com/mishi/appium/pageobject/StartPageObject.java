@@ -1,29 +1,39 @@
 package com.mishi.appium.pageobject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.mishi.appium.controlobject.WebElementObject;
 
 import io.appium.java_client.android.AndroidDriver;
 
 public class StartPageObject extends BasePageObject {
-	public StartPageObject(AndroidDriver<WebElement> driver) {
-		this.driver = driver;
-		this.registerButton = driver.findElement(By.id("com.mishi.android.seller:id/ui_btn_viewpage_reg"));
-		this.loginButton = driver.findElement(By.id("com.mishi.android.seller:id/ui_btn_viewpage_login"));
-	}
 	
-	private WebElement registerButton;
-	private WebElement loginButton;
+	private WebElementObject registerButton;
+	private WebElementObject loginButton;
 
-	public WebElement getLoginButton() {
-		return loginButton;
+	public void clickToLogin(){
+		this.loginButton.getWebelement().click();
 	}
 
-	public WebElement getRegisterButton() {
+	public WebElementObject getRegisterButton() {
 		return registerButton;
 	}
 
-	public void clickToLogin(){
-		this.loginButton.click();
+	public void setRegisterButton(WebElementObject registerButton) {
+		this.registerButton = registerButton;
+	}
+
+	public WebElementObject getLoginButton() {
+		return loginButton;
+	}
+
+	public void setLoginButton(WebElementObject loginButton) {
+		this.loginButton = loginButton;
+	}
+
+	@Override
+	public void setDriver(AndroidDriver<WebElement> driver) {
+		this.loginButton.setDriver(driver);
+		this.registerButton.setDriver(driver);
 	}
 }

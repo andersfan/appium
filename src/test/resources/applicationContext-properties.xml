@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!-- 将配置文件读取到容器中，交给Spring管理 -->
+    <bean id="propertyConfigurerBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" ref="propertyResourcesBean" />
+    </bean>
+
+    <!-- 将多个配置文件位置放到列表中 -->
+    <bean id="propertyResourcesBean" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->
+                <value>classpath:config/android-driver.properties</value>
+                <value>classpath:config/android-control.properties</value>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

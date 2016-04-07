@@ -37,7 +37,7 @@ public final class BaseDriverConfig {
 		File classpathRoot = new File(System.getProperty("user.dir"));
 		File appDir = new File(classpathRoot, "app");
 		File app = new File(appDir, "app-adhocConfig-debug.apk");
-
+	
 		// 设置自动化相关参数
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");

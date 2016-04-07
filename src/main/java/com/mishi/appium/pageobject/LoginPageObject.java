@@ -1,91 +1,125 @@
 package com.mishi.appium.pageobject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.mishi.appium.controlobject.WebElementObject;
 
 import io.appium.java_client.android.AndroidDriver;
 
 public class LoginPageObject extends BasePageObject {
 
-	public LoginPageObject(AndroidDriver<WebElement> driver) {
-		this.driver = driver;
-		
-		this.titleView = driver.findElement(By.id("com.mishi.android.seller:id/actionbar_tv_title"));
-		this.nameView = driver.findElement(By.id("com.mishi.android.seller:id/title"));
-		this.pwdView = driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]");
-		this.forgetPwdView =  driver.findElement(By.id("com.mishi.android.seller:id/ui_tv_login_form_forget_password"));
-		
-		this.pwdTextBox = driver.findElement(By.id("com.mishi.android.seller:id/ui_et_login_password"));
-		this.nameTextBox = driver.findElement(By.id("com.mishi.android.seller:id/edit_text"));
-		
-		this.loginButton = driver.findElement(By.id("com.mishi.android.seller:id/ui_btn_login"));
-		this.registerButton = driver.findElement(By.id("com.mishi.android.seller:id/ui_btn_login_form_register"));
-		this.backButton = driver.findElement(By.id("com.mishi.android.seller:id/actionbar_btn_back"));
-	}
-	
-	private WebElement titleView;
-	private WebElement nameView; 
-	private WebElement pwdView; 
-	private WebElement forgetPwdView; 
-	
-	private WebElement pwdTextBox;
-	private WebElement nameTextBox;
-	
-	private WebElement loginButton;
-	private WebElement registerButton; 
-	private WebElement backButton;
+	private WebElementObject titleView;
+	private WebElementObject nameView;
+	private WebElementObject pwdView;
+	private WebElementObject forgetPwdView;
 
-	public WebElement getNameView() {
-		return nameView;
-	}
+	private WebElementObject pwdTextBox;
+	private WebElementObject nameTextBox;
 
-	public WebElement getPwdView() {
-		return pwdView;
-	}
-
-	public WebElement getForgetPwdView() {
-		return forgetPwdView;
-	}
-
-	public WebElement getRegisterButton() {
-		return registerButton;
-	}
-	
-	public WebElement getPwdTextBox() {
-		return pwdTextBox;
-	}
-
-	public WebElement getNameTextBox() {
-		return nameTextBox;
-	}
-	
-	public WebElement getLoginButton() {
-		return loginButton;
-	}
-	
-	public WebElement getBackButton() {
-		return backButton;
-	}
-	
-	public WebElement getTitleView() {
-		return titleView;
-	}
+	private WebElementObject loginButton;
+	private WebElementObject registerButton;
+	private WebElementObject backButton;
 
 	public void inputUserName(String name) {
-		this.nameTextBox.sendKeys(name);
-		
-		while (!this.nameTextBox.getText().replace(" ", "").equals(name)) {
-			this.nameTextBox.clear();
-			this.nameTextBox.sendKeys(name);
+		this.nameTextBox.getWebelement().sendKeys(name);
+
+		while (!this.nameTextBox.getWebelement().getText().replace(" ", "").equals(name)) {
+			this.nameTextBox.getWebelement().clear();
+			this.nameTextBox.getWebelement().sendKeys(name);
 		}
 	}
 
 	public void inputPwd(String pwd) {
-		this.pwdTextBox.sendKeys(pwd);
+		this.pwdTextBox.getWebelement().sendKeys(pwd);
 	}
 
 	public void clickToLogin() {
-		this.loginButton.click();
+		this.loginButton.getWebelement().click();
+	}
+
+	@Override
+	public void setDriver(AndroidDriver<WebElement> driver) {
+		this.titleView.setDriver(driver);
+		this.nameView.setDriver(driver);
+		this.pwdView.setDriver(driver);
+		this.forgetPwdView.setDriver(driver);
+		this.pwdTextBox.setDriver(driver);
+		this.nameTextBox.setDriver(driver);
+		this.loginButton.setDriver(driver);
+		this.registerButton.setDriver(driver);
+		this.backButton.setDriver(driver);
+	}
+
+	public WebElementObject getTitleView() {
+		return titleView;
+	}
+
+	public void setTitleView(WebElementObject titleView) {
+		this.titleView = titleView;
+	}
+
+	public WebElementObject getNameView() {
+		return nameView;
+	}
+
+	public void setNameView(WebElementObject nameView) {
+		this.nameView = nameView;
+	}
+
+	public WebElementObject getPwdView() {
+		return pwdView;
+	}
+
+	public void setPwdView(WebElementObject pwdView) {
+		this.pwdView = pwdView;
+	}
+
+	public WebElementObject getForgetPwdView() {
+		return forgetPwdView;
+	}
+
+	public void setForgetPwdView(WebElementObject forgetPwdView) {
+		this.forgetPwdView = forgetPwdView;
+	}
+
+	public WebElementObject getPwdTextBox() {
+		return pwdTextBox;
+	}
+
+	public void setPwdTextBox(WebElementObject pwdTextBox) {
+		this.pwdTextBox = pwdTextBox;
+	}
+
+	public WebElementObject getNameTextBox() {
+		return nameTextBox;
+	}
+
+	public void setNameTextBox(WebElementObject nameTextBox) {
+		this.nameTextBox = nameTextBox;
+	}
+
+	public WebElementObject getLoginButton() {
+		return loginButton;
+	}
+
+	public void setLoginButton(WebElementObject loginButton) {
+		this.loginButton = loginButton;
+	}
+
+	public WebElementObject getRegisterButton() {
+		return registerButton;
+	}
+
+	public void setRegisterButton(WebElementObject registerButton) {
+		this.registerButton = registerButton;
+	}
+
+	public WebElementObject getBackButton() {
+		return backButton;
+	}
+
+	public void setBackButton(WebElementObject backButton) {
+		this.backButton = backButton;
 	}
 
 }

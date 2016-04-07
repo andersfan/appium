@@ -5,5 +5,5 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public abstract class BasePageObject {
-	protected AndroidDriver<WebElement> driver;
+	public abstract void setDriver(AndroidDriver<WebElement> driver);
 }

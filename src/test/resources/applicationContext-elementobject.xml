@@ -1,0 +1,61 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+ 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd" >
+   
+   <!-- start page object -->
+    <bean id="startPageObjectBean" class="com.mishi.appium.pageobject.StartPageObject">
+    	<property name="registerButton" ref="startPageRegisterButtonBean"/>
+    	<property name="loginButton" ref="startPageLoginButtonBean"/>
+    </bean>
+   	<bean id="startPageRegisterButtonBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${StartPage.RegisterButton.ResourceId}" />  
+    </bean>
+    <bean id="startPageLoginButtonBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${StartPage.LoginButton.ResourceId}" />  
+    </bean>
+	
+	<!-- login page object -->
+	<bean id="loginPageObjectBean" class="com.mishi.appium.pageobject.LoginPageObject">
+    	<property name="titleView" ref="loginPageTitleViewBean"/>
+    	<property name="nameView" ref="loginPageNameViewBean"/>
+    	<property name="pwdView" ref="loginPagePwdViewBean"/>
+    	<property name="forgetPwdView" ref="loginPageForgetPwdViewBean"/>
+    	<property name="pwdTextBox" ref="loginPagePwdTextBoxBean"/>
+    	<property name="nameTextBox" ref="loginPageNameTextBoxBean"/>
+    	<property name="loginButton" ref="loginPageLoginButtonBean"/>
+    	<property name="registerButton" ref="loginPageRegisterButtonBean"/>
+    	<property name="backButton" ref="loginPageBackButtonBean"/>
+    </bean>
+	<bean id="loginPageTitleViewBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.TitleView.ResourceId}" />  
+    </bean>
+    <bean id="loginPageNameViewBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.NameView.ResourceId}" />  
+    </bean>
+    <bean id="loginPagePwdViewBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="xpath" value="${LoginPage.PwdView.XPath}" />  
+    </bean>
+    <bean id="loginPageForgetPwdViewBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.ForgetPwdView.ResourceId}" />  
+    </bean>    
+    <bean id="loginPagePwdTextBoxBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.PwdTextBox.ResourceId}" />  
+    </bean>   
+    <bean id="loginPageNameTextBoxBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.NameTextBox.ResourceId}" />  
+    </bean>   
+    <bean id="loginPageLoginButtonBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.LoginButton.ResourceId}" />  
+    </bean>   
+    <bean id="loginPageRegisterButtonBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.RegisterButton.ResourceId}" />  
+    </bean>   
+	<bean id="loginPageBackButtonBean" class="com.mishi.appium.controlobject.WebElementObject">
+        <property name="resourceId" value="${LoginPage.BackButton.ResourceId}" />  
+    </bean>  
+</beans>
