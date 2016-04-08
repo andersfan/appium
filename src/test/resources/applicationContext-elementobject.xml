@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd" >
    
    <!-- start page object -->
-    <bean id="startPageObjectBean" class="com.mishi.appium.pageobject.StartPageObject">
+    <bean id="startPageObjectBean" class="com.mishi.appium.android.pageobject.StartPageObject">
     	<property name="registerButton" ref="startPageRegisterButtonBean"/>
     	<property name="loginButton" ref="startPageLoginButtonBean"/>
     </bean>
@@ -20,7 +20,7 @@
     </bean>
 	
 	<!-- login page object -->
-	<bean id="loginPageObjectBean" class="com.mishi.appium.pageobject.LoginPageObject">
+	<bean id="loginPageObjectBean" class="com.mishi.appium.android.pageobject.LoginPageObject">
     	<property name="titleView" ref="loginPageTitleViewBean"/>
     	<property name="nameView" ref="loginPageNameViewBean"/>
     	<property name="pwdView" ref="loginPagePwdViewBean"/>

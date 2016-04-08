@@ -9,35 +9,38 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 
 public final class BaseDriverConfig {
-	private BaseDriverConfig(){
+	private BaseDriverConfig() {
 		return;
 	}
-	
-	public static BaseDriverConfig getInstance(){
+
+	public static BaseDriverConfig getInstance() {
 		return new BaseDriverConfig();
 	}
-	
-	private AndroidDriver<WebElement> driver;
 
-	public AndroidDriver<WebElement> getDriver() throws InterruptedException {
-		if (this.driver == null) {
+	private AndroidDriver<WebElement> androidDriver;
+
+	private IOSDriver<WebElement> iosDriver;
+
+	public AndroidDriver<WebElement> getAndroidDriver() throws InterruptedException {
+		if (this.androidDriver == null) {
 			try {
-				this.initDriver();
+				this.initAndroidDriver();
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 		}
-		return this.driver;
+		return this.androidDriver;
 	}
 
-	public void initDriver() throws MalformedURLException, InterruptedException {
+	public void initAndroidDriver() throws MalformedURLException, InterruptedException {
 		// 设置apk的路径
 		File classpathRoot = new File(System.getProperty("user.dir"));
 		File appDir = new File(classpathRoot, "app");
 		File app = new File(appDir, "app-adhocConfig-debug.apk");
-	
+
 		// 设置自动化相关参数
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
@@ -62,9 +65,50 @@ public final class BaseDriverConfig {
 		capabilities.setCapability("appActivity", "com.mishi.ui.SplashActivity");
 
 		// 初始化
-		this.driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-		
-		//等待10秒,等待模拟器启动app程序进入首页,保证test project的健壮性
+		this.androidDriver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
+		// 等待10秒,等待模拟器启动app程序进入首页,保证test project的健壮性
 		Thread.sleep(10000);
 	}
+
+	public void initIosDriver() throws MalformedURLException, InterruptedException {
+		// set up appium
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
+		capabilities.setCapability("platformName", "Mac");
+		capabilities.setCapability("deviceName", "iPhone 5");
+		capabilities.setCapability("platformVersion", "8.4");
+
+		// if no need install don't add this
+		File classpathRoot = new File(System.getProperty("user.dir"));
+		File appDir = new File(classpathRoot, "app");
+		File app = new File(appDir, "MishiOS.ipa");
+		System.out.println("---->" + app.getAbsolutePath());
+		capabilities.setCapability("app", app.getAbsolutePath());
+
+		capabilities.setCapability("noSign", "True");
+		
+		// support Chinese
+		capabilities.setCapability("unicodeKeyboard", "True");
+		capabilities.setCapability("resetKeyboard", "True");
+
+		this.iosDriver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
+		// 等待10秒,等待模拟器启动app程序进入首页,保证test project的健壮性
+		Thread.sleep(10000);
+	}
+
+	public IOSDriver<WebElement> getIosDriver() {
+		if (this.iosDriver == null) {
+			try {
+				this.initIosDriver();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		return this.iosDriver;
+	}
+
 }

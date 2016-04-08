@@ -3,11 +3,11 @@ package com.mishi.appium.controlobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.AppiumDriver;
 
 public class WebElementObject {
 	private WebElement webelement;
-	private AndroidDriver<WebElement> driver;
+	private AppiumDriver<WebElement> driver;
 
 	private String resourceId;
 	private String xpath;
@@ -29,7 +29,7 @@ public class WebElementObject {
 		this.name = name;
 	}
 
-	public void setDriver(AndroidDriver<WebElement> driver) {
+	public void setDriver(AppiumDriver<WebElement> driver) {
 		this.driver = driver;
 		this.initWebElement();
 	}
